@@ -1,5 +1,5 @@
 //
-//  Director.h
+//  Actor.h
 //  MovieWebService
 //
 //  Created by testDev on 4/11/17.
@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "GenericRole.h"
 
-@interface Director : GenericRole
+@interface Actor : GenericRole
 
-- (id)initWithData:(NSDictionary *)data;
+@property (nonatomic, strong) NSString *screenName;
+
+- (instancetype)initWithData:(NSDictionary *)data;
 
 @end

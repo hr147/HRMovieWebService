@@ -11,25 +11,35 @@
 #import "MoviesListViewInput.h"
 #import "MoviesListInteractorInput.h"
 #import "MoviesListRouterInput.h"
+#import "FilmViewModel.h"
 
 @implementation MoviesListPresenter {
     NSArray *films;
 }
 
-- (void)configureModule {
+- (void)viewDidLoad {
+    [self.view setupInitialState];
+    [self.interactor fetchFilms];
  }
 
-- (void)didTriggerViewReadyEvent {
-	[self.view setupInitialState];
-}
 
-- (void)setViewForSetup:(UIView *)view {
-    [self.interactor setViewForSetup:view];
-}
+#pragma mark - MoviesListInteractorOutput Methods
 
-- (void)setData:(Film *)film {
-    films = [NSArray arrayWithObject:film];
-    [self.interactor setData:films];
+-(void)filmDidLoad:(NSArray<Film *>*)films{
+    NSMutableArray<FilmViewModel *> *filmViewModels = [NSMutableArray array];
+    //define formmater for display
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM, dd YYYY"];
+    //casting film to filmViewModel
+    for (Film * film in films) {
+        FilmViewModel* viewModel = [[FilmViewModel alloc] initWithFilm:film Withformatter:dateFormatter];
+        [filmViewModels addObject:viewModel];
+    }
+    //get main thread to show films on the list.
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.view showFilmsWith:filmViewModels];
+    });
 }
 
 @end

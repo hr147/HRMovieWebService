@@ -12,11 +12,11 @@
 #import "Film.h"
 
 @protocol MoviesListViewOutput;
+@protocol MoviesListModuleInput;
 
-@interface MoviesListViewController : UIViewController <MoviesListViewInput> {
-    Film *film;
+@interface MoviesListViewController : UIViewController <MoviesListViewInput, UITableViewDataSource, UITableViewDelegate> {
 }
 
-@property (nonatomic, strong) id<MoviesListViewOutput> output;
+@property (nonatomic, strong) id<MoviesListModuleInput> eventHandler;
 
 @end

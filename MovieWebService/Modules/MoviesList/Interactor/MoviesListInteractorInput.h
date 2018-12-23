@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol MoviesListInteractorInput <NSObject>
-- (void)setViewForSetup:(UIView *)view;
-- (void)setData:(NSArray *)films;
+
+-(void)fetchFilms;
+
 @end

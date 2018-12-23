@@ -11,6 +11,7 @@
 @implementation GenericRole
 
 - (id)initWithData:(NSDictionary *)data {
+    self = [super init];
     if (self) {
         self.name = [data objectForKey:@"name"];
         self.biography = [data objectForKey:@"biography"];

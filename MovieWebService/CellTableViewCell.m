@@ -7,18 +7,13 @@
 //
 
 #import "CellTableViewCell.h"
+#import "FilmViewModel.h"
 
 @implementation CellTableViewCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (void) configureCellWithViewModel:(FilmViewModel*)viewModel{
+    self.name.text = viewModel.name;
+    self.date.text = viewModel.date;
+    self.rating.text = viewModel.rating;
+    self.filmRating.text = viewModel.filmRating;
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

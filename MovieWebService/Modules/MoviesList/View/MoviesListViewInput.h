@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class FilmViewModel;
 @protocol MoviesListViewInput <NSObject>
-
+- (void)showFilmsWith:(NSArray<FilmViewModel *>*)newFilms;
 - (void)setupInitialState;
-
 @end

@@ -16,7 +16,7 @@
 
 @interface MoviesListPresenter : NSObject <MoviesListModuleInput, MoviesListViewOutput, MoviesListInteractorOutput>
 
-@property (nonatomic, strong) id<MoviesListViewInput> view;
+@property (nonatomic, weak) id<MoviesListViewInput> view;
 @property (nonatomic, strong) id<MoviesListInteractorInput> interactor;
 @property (nonatomic, strong) id<MoviesListRouterInput> router;
 

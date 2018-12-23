@@ -1,19 +1,19 @@
 //
-//  Actor.m
+//  Director.m
 //  MovieWebService
 //
 //  Created by testDev on 4/11/17.
 //  Copyright © 2017 TestCompany. All rights reserved.
 //
 
-#import "Actor.h"
+#import "Director.h"
 
-@implementation Actor
+@implementation Director
 
-- (id)initWithData:(NSDictionary *)data {
+- (instancetype)initWithData:(NSDictionary *)data {
     self = [super init];
-    if (self) {
-        self.screenName = [data objectForKey:@"screenName"];
+    if (self){
+        self.name = [data objectForKey:@"name"];
     }
     return self;
 }

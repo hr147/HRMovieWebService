@@ -12,7 +12,7 @@
 #import "MoviesListInteractor.h"
 #import "MoviesListPresenter.h"
 #import "MoviesListRouter.h"
-
+#import "FilmService.h"
 @implementation MoviesListBuilder
 
 - (UIViewController *)build {
@@ -26,10 +26,10 @@
     presenter.view = viewController;
     presenter.router = router;
 
-    MoviesListInteractor *interactor = [MoviesListInteractor new];
+    MoviesListInteractor *interactor = [[MoviesListInteractor alloc] initWithFilmService:[FilmService new]];
     interactor.output = presenter;
     presenter.interactor = interactor;
-    viewController.output = presenter;
+    viewController.eventHandler = presenter;
     
     return viewController;
 

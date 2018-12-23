@@ -12,8 +12,8 @@
 
 @protocol MoviesListViewOutput <NSObject>
 
-- (void)didTriggerViewReadyEvent;
-- (void)setViewForSetup:(UIView *)view;
-- (void)setData:(Film *)film;
+//- (void)didTriggerViewReadyEvent;
+//- (void)setViewForSetup:(UIView *)view;
+//- (void)setData:(Film *)film;
 
 @end

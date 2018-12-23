@@ -10,6 +10,6 @@
 
 @protocol MoviesListModuleInput
 
-- (void)configureModule;
+- (void)viewDidLoad;
 
 @end
