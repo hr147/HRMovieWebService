@@ -8,10 +8,11 @@
 
 class DetailsInteractor: DetailsInteractorInput {
 
-    weak var output: DetailsInteractorOutput!
-
-    // MARK: - DetailsInteractorInput
+    private unowned let output: DetailsInteractorOutput
+    let film: Film
     
-    
-    
+    init(film: Film, output: DetailsInteractorOutput) {
+        self.film = film
+        self.output = output
+    }
 }

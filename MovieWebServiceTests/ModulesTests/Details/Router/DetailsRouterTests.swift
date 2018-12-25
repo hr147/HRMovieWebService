@@ -21,8 +21,8 @@ class DetailsRouterTests: XCTestCase {
 		
         viewController = MockViewController()
 		
-        router = DetailsRouter()
-        router.viewController = viewController
+//        router = DetailsRouter()
+//        router.viewController = viewController
     }
 
     override func tearDown() {

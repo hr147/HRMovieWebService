@@ -11,8 +11,4 @@
 
 @interface Director : GenericRole
 
-@property (strong, nonatomic) NSString* name;
-
-- (instancetype)initWithData:(NSDictionary *)data;
-
 @end

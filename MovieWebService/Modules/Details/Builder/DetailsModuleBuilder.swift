@@ -9,26 +9,21 @@
 import UIKit
 
 @objc class DetailsModuleBuilder: NSObject {
-
-    func build(with data: Any) -> UIViewController {
-
+    
+    @objc func build(with film: Film) -> UIViewController {
+        
         let viewController = DetailsViewController()
-
-        let router = DetailsRouter()
-        router.viewController = viewController
-
-        let presenter = DetailsPresenter()
-        presenter.view = viewController
-        presenter.router = router
-
-        let interactor = DetailsInteractor()
-        interactor.output = presenter
-
+        
+        let router = DetailsRouter(viewController: viewController)
+        
+        let presenter = DetailsPresenter(view: viewController, router: router)
+        
+        let interactor = DetailsInteractor(film: film, output: presenter)
+        
         presenter.interactor = interactor
-        viewController.output = presenter
-        viewController.director = data as? Director
-
+        viewController.eventHandler = presenter
+        
         return viewController
     }
-
+    
 }

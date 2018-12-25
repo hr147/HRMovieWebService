@@ -8,10 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-
 #import "MoviesListViewController.h"
-
-#import "MoviesListViewOutput.h"
+#import "MoviesListModuleInput.h"
 
 @interface MoviesListViewControllerTests : XCTestCase
 
@@ -28,9 +26,9 @@
 
     self.controller = [[MoviesListViewController alloc] init];
 
-    self.mockOutput = OCMProtocolMock(@protocol(MoviesListViewOutput));
+    self.mockOutput = OCMProtocolMock(@protocol(MoviesListModuleInput));
 
-    self.controller.output = self.mockOutput;
+    self.controller.eventHandler = self.mockOutput;
 }
 
 - (void)tearDown {
@@ -48,7 +46,7 @@
 	[self.controller viewDidLoad];
 
 	// then
-	OCMVerify([self.mockOutput didTriggerViewReadyEvent]);
+	OCMVerify([self.mockOutput viewIsReady]);
 }
 
 @end

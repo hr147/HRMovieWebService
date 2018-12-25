@@ -8,7 +8,6 @@
 
 #import "MoviesListViewController.h"
 #import "Masonry.h"
-#import "MoviesListViewOutput.h"
 #import "AppDelegate.h"
 #import "Film.h"
 #import "CellTableViewCell.h"
@@ -21,15 +20,6 @@
 
 #pragma mark - Life cycle
 
-//- (instancetype)init
-//{
-//    self = [super init];
-//    if (self) {
-//        [self setup];
-//    }
-//    return self;
-//}
-
 -(void)setup{
     [self setupViews];
     [self addSubviews];
@@ -41,6 +31,11 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView registerNib:[UINib nibWithNibName:@"CellTableViewCell" bundle:nil]  forCellReuseIdentifier:@"CellTableViewCell"];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)addSubviews{
@@ -54,19 +49,14 @@
     }];
 }
 
+#pragma mark - View Life Cycle
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    [self.eventHandler viewDidLoad];
+    [self.eventHandler viewIsReady];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [appDelegate getFilmWithCallback:^(Film *film) {
-//        [self.output setData:film];
-//    }];
-//
-//}
-
+#pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return films.count;
@@ -76,54 +66,18 @@
     static NSString *CellIdentifier = @"CellTableViewCell";
     CellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     [cell configureCellWithViewModel:films[indexPath.row]];
-//    if (cell == nil) {
-//        cell = [[[NSBundle mainBundle] loadNibNamed:@"CellTableViewCell" owner:self options:nil] firstObject];
-//        //cell = self.movieCell;
-//        //self.movieCell = nil;
-//    }
-//    Film *film = [films objectAtIndex:indexPath.row];
-//    cell.name.text = film.name;
-//
-//    NSCalendar* cal = [NSCalendar new];
-//    NSString* dateText;
-//    NSDateFormatter *f = [[NSDateFormatter alloc] init];
-//    [f setCalendar:cal];
-//    dateText = [f stringFromDate:film.releaseDate];
-//
-//    cell.date.text = dateText;
-//
-//    NSString *filmRatingText;
-//    switch (film.filmRating) {
-//        case G:
-//            filmRatingText = @"G";
-//        case PG:
-//            filmRatingText = @"PG";
-//        case PG13:
-//            filmRatingText = @"PG13";
-//        case R:
-//            filmRatingText = @"R";
-//        default:
-//            break;
-//    }
-//    cell.filmRating.text = filmRatingText;
-//    cell.rating.text = [[NSNumber numberWithInteger:film.rating] stringValue];
-//
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    Film *film = [films objectAtIndex:indexPath.row];
-//    DetailsModuleBuilder *builder = [DetailsModuleBuilder new];
-    // [appDelegate.navigationController pushViewController:[builder buildWith:film] animated:YES];
+    [self.eventHandler filmDidSelect:films[indexPath.row] atIndex:indexPath.row];
 }
 
 #pragma mark - MoviesListViewInput
 
 - (void)setupInitialState {
     self.navigationItem.title = @"RootViewController";
-    self.view.backgroundColor = [UIColor whiteColor];
     films = @[];
     [self setup];
 }

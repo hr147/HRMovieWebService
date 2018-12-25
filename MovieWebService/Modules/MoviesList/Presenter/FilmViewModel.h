@@ -20,20 +20,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFilm:(Film*)film Withformatter:(NSDateFormatter*)formatter;
 @end
 NS_ASSUME_NONNULL_END
-
-
-/*
- 
- @property (assign, nonatomic) FilmRating filmRating;
- @property (strong, nonatomic) NSArray *languages;
- @property (assign, nonatomic) BOOL nominated;
- @property (strong, nonatomic) NSDate *releaseDate;
- @property (strong, nonatomic) NSArray<Actor*> *cast;
- 
- - (id)initWithData:(NSDictionary *)data;
- 
- @property (strong, nonatomic) NSString *name;
- @property (assign, nonatomic) double rating;
- @property (strong, nonatomic) Director *director;
- 
- */

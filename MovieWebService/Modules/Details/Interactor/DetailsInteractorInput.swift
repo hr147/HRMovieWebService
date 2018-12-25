@@ -7,5 +7,6 @@
 //
 
 protocol DetailsInteractorInput {
-
+    var film: Film { get }
+    
 }

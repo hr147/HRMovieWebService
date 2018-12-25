@@ -6,7 +6,6 @@
 //  Copyright © 2017 Agoda Services Co. Ltd. All rights reserved.
 //
 
-#import "MoviesListViewOutput.h"
 #import "MoviesListInteractorOutput.h"
 #import "MoviesListModuleInput.h"
 
@@ -14,7 +13,7 @@
 @protocol MoviesListInteractorInput;
 @protocol MoviesListRouterInput;
 
-@interface MoviesListPresenter : NSObject <MoviesListModuleInput, MoviesListViewOutput, MoviesListInteractorOutput>
+@interface MoviesListPresenter : NSObject <MoviesListModuleInput, MoviesListInteractorOutput>
 
 @property (nonatomic, weak) id<MoviesListViewInput> view;
 @property (nonatomic, strong) id<MoviesListInteractorInput> interactor;

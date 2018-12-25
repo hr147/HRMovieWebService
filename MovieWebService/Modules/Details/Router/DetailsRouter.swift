@@ -8,10 +8,9 @@
 
 class DetailsRouter: DetailsRouterInput {
 
-	weak var viewController: DetailsViewController!
-
-	// MARK: - DetailsRouterInput
-	
-	
-	
+	private unowned let viewController: DetailsViewController
+    
+    init(viewController: DetailsViewController) {
+        self.viewController = viewController
+    }
 }

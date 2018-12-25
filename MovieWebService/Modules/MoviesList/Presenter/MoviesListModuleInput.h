@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+@class FilmViewModel;
 
 @protocol MoviesListModuleInput
-
-- (void)viewDidLoad;
-
+- (void)viewIsReady;
+- (void)filmDidSelect:(FilmViewModel*)filmViewModel atIndex:(NSInteger)index;
 @end

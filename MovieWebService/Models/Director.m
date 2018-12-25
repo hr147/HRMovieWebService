@@ -10,12 +10,4 @@
 
 @implementation Director
 
-- (instancetype)initWithData:(NSDictionary *)data {
-    self = [super init];
-    if (self){
-        self.name = [data objectForKey:@"name"];
-    }
-    return self;
-}
-
 @end

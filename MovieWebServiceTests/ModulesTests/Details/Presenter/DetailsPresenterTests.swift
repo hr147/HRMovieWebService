@@ -14,45 +14,45 @@ import MovieWebService
 
 class DetailsPresenterTests: XCTestCase {
 
-    var presenter: DetailsPresenter!
-    var router: MockRouter!
-    var interactor: MockInteractor!
-    var view: MockView!
+//    var presenter: DetailsPresenter!
+//    var router: MockRouter!
+//    var interactor: MockInteractor!
+//    var view: MockView!
 	
     override func setUp() {
         super.setUp()
 		
-        router = MockRouter()
-        interactor = MockInteractor()
-        view = MockView()
+//        router = MockRouter()
+//        interactor = MockInteractor()
+//        view = MockView()
 
-        presenter = DetailsPresenter()
-        presenter.router = router
-        presenter.interactor = interactor
-        presenter.view = view
+//        presenter = DetailsPresenter()
+//        presenter.router = router
+//        presenter.interactor = interactor
+//        presenter.view = view
     }
 
     override func tearDown() {
-        router = nil
-        interactor = nil
-        view = nil
-        presenter = nil
+//        router = nil
+//        interactor = nil
+//        view = nil
+//        presenter = nil
 
         super.tearDown()
     }
 
     // MARK: - Mock
 
-    class MockInteractor: DetailsInteractorInput {
-
-    }
-
-    class MockRouter: DetailsRouterInput {
-
-    }
-
-    class MockView: DetailsViewInput {
-		
-    }
+//    class MockInteractor: DetailsInteractorInput {
+//
+//    }
+//
+//    class MockRouter: DetailsRouterInput {
+//
+//    }
+//
+//    class MockView: DetailsViewInput {
+//        
+//    }
 
 }

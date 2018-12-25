@@ -21,8 +21,8 @@ class DetailsInteractorTests: XCTestCase {
 		
         output = MockOutput()
        
-        interactor = DetailsInteractor()
-        interactor.output = output
+//        interactor = DetailsInteractor()
+//        interactor.output = output
     }
 
     override func tearDown() {

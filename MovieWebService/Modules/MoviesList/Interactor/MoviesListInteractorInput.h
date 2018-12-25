@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class Film;
+
 @protocol MoviesListInteractorInput <NSObject>
 
 -(void)fetchFilms;
+- (Film* )getFilmAtIndex:(NSInteger)index;
 
 @end

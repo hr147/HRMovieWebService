@@ -17,11 +17,17 @@
     NSArray *films;
 }
 
-- (void)viewDidLoad {
+- (void)viewIsReady {
     [self.view setupInitialState];
     [self.interactor fetchFilms];
  }
 
+- (void)filmDidSelect:(FilmViewModel*)filmViewModel atIndex:(NSInteger)index {
+    Film* film = [self.interactor getFilmAtIndex:index];
+    if (film) {
+        [self.router showFilmDetailWith:film];
+    }
+}
 
 #pragma mark - MoviesListInteractorOutput Methods
 

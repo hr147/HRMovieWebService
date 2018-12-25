@@ -7,5 +7,7 @@
 //
 
 protocol DetailsViewInput: class {
-
+    func setupInitialState()
+    func showCollapsedDetail(with detailViewModel: CollapsedDetailViewModel)
+    func showExpandedDetail(with detailViewModel: ExpandedDetailViewModel)
 }

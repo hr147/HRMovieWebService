@@ -7,5 +7,6 @@
 //
 
 protocol DetailsModuleInput: class {
-
+    func viewIsReady()
+    func showMoreDetails()
 }
