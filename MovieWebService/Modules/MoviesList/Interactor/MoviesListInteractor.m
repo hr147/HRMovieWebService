@@ -34,10 +34,14 @@
 
 -(void)fetchFilms{
     __weak typeof(self)weakSelf = self;
-    [self.service getFilmWithCompletion:^(NSArray<Film *>  * _Nonnull films) {
-        [weakSelf.output filmDidLoad:films];
-        weakSelf.films = films;
-    }];
+    [self.service
+     getFilmWithCompletion:^(NSArray<Film *> * films) {
+         [weakSelf.output filmDidLoadSuccess:films];
+         weakSelf.films = films;
+     }
+     withFailure:^(NSError * error) {
+         [weakSelf.output filmDidLoadFail:error];
+     }];
 }
 
 - (Film* )getFilmAtIndex:(NSInteger)index {

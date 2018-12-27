@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FilmServiceProtocol <NSObject>
 typedef void(^CompletionHandler)(NSArray<Film *>*);
-- (void)getFilmWithCompletion:(CompletionHandler)completion;
+typedef void(^FailureHandler)(NSError*);
+- (void)getFilmWithCompletion:(CompletionHandler)completion withFailure:(FailureHandler)failure;
 @end
 
 

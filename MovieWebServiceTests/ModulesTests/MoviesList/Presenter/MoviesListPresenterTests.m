@@ -90,7 +90,7 @@
     
     //when
     
-    [self.presenter filmDidLoad:films];
+    [self.presenter filmDidLoadSuccess:films];
     
     // then
     // we need to wait for real result

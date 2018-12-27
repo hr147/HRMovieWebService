@@ -8,9 +8,12 @@
 
 #import "FilmService.h"
 #import "Film.h"
+#import "FilmServiceError.h"
+
 
 @implementation FilmService
-- (void)getFilmWithCompletion:(CompletionHandler)completion{
+
+- (void)getFilmWithCompletion:(CompletionHandler)completion withFailure:(FailureHandler)failure{
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
         NSDictionary *data = @{
                                @"filmRating" : @3,
@@ -40,9 +43,14 @@
                                };
         
         Film* film = [[Film alloc] initWithData:data];
-        NSArray<Film*> *films = @[film];
-        data = nil;
-        completion(films);
+        NSError *error = [FilmServiceError validateFilmWith:film];
+        if (error){
+            failure(error);
+        }else{
+            NSArray<Film*> *films = @[film];
+            data = nil;
+            completion(films);
+        }
     });
 }
 @end

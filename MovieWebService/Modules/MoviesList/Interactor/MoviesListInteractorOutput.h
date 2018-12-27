@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 @class Film;
 @protocol MoviesListInteractorOutput <NSObject>
--(void)filmDidLoad:(NSArray<Film *>*)films;
+-(void)filmDidLoadSuccess:(NSArray<Film *>*)films;
+-(void)filmDidLoadFail:(NSError * )error;
 @end

@@ -10,7 +10,7 @@
 #import <OCMock/OCMock.h>
 
 #import "MoviesListInteractor.h"
-
+#import "FilmService.h"
 #import "MoviesListInteractorOutput.h"
 
 @interface MoviesListInteractorTests : XCTestCase
@@ -26,7 +26,8 @@
 - (void)setUp {
     [super setUp];
 
-    self.interactor = [[MoviesListInteractor alloc] init];
+    
+    self.interactor = [[MoviesListInteractor alloc] initWithFilmService:[FilmService new]];
 
     self.mockOutput = OCMProtocolMock(@protocol(MoviesListInteractorOutput));
 
@@ -39,6 +40,17 @@
     self.mockOutput = nil;
 
     [super tearDown];
+}
+
+- (void)testThatInteractorHanldesFetchFilmsRequest {
+    // given
+    
+    
+    // when
+    [self.interactor fetchFilms];
+    
+    // then
+    OCMVerify([self.mockOutput filmDidLoadSuccess:[OCMArg any]]);
 }
 
 @end

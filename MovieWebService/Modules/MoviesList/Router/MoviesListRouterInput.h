@@ -10,4 +10,5 @@
 @class Film;
 @protocol MoviesListRouterInput <NSObject>
 - (void)showFilmDetailWith:(Film*)film;
+- (void)showAlertWithMessage:(NSString *)message;
 @end

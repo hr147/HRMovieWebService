@@ -13,14 +13,12 @@
 #import "MoviesListRouterInput.h"
 #import "FilmViewModel.h"
 
-@implementation MoviesListPresenter {
-    NSArray *films;
-}
+@implementation MoviesListPresenter
 
 - (void)viewIsReady {
     [self.view setupInitialState];
     [self.interactor fetchFilms];
- }
+}
 
 - (void)filmDidSelectAtIndex:(NSInteger)index {
     Film* film = [self.interactor getFilmAtIndex:index];
@@ -31,7 +29,7 @@
 
 #pragma mark - MoviesListInteractorOutput Methods
 
--(void)filmDidLoad:(NSArray<Film *>*)films{
+-(void)filmDidLoadSuccess:(NSArray<Film *>*)films{
     
     NSMutableArray<FilmViewModel *> *filmViewModels = [NSMutableArray array];
     //define formmater for display
@@ -49,4 +47,10 @@
     });
 }
 
+- (void)filmDidLoadFail:(NSError *)error{
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.router showAlertWithMessage:error.localizedDescription];
+    });
+}
 @end
