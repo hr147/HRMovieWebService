@@ -71,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.eventHandler filmDidSelect:films[indexPath.row] atIndex:indexPath.row];
+    [self.eventHandler filmDidSelectAtIndex:indexPath.row];
 }
 
 #pragma mark - MoviesListViewInput

@@ -22,7 +22,7 @@
     [self.interactor fetchFilms];
  }
 
-- (void)filmDidSelect:(FilmViewModel*)filmViewModel atIndex:(NSInteger)index {
+- (void)filmDidSelectAtIndex:(NSInteger)index {
     Film* film = [self.interactor getFilmAtIndex:index];
     if (film) {
         [self.router showFilmDetailWith:film];
@@ -32,6 +32,7 @@
 #pragma mark - MoviesListInteractorOutput Methods
 
 -(void)filmDidLoad:(NSArray<Film *>*)films{
+    
     NSMutableArray<FilmViewModel *> *filmViewModels = [NSMutableArray array];
     //define formmater for display
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

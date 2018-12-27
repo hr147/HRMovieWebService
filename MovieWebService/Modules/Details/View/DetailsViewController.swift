@@ -116,6 +116,10 @@ class DetailsViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16.0).isActive = true
     }
+    
+    deinit {
+        print("\(self)")
+    }
 }
 
 extension DetailsViewController: DetailsViewInput {

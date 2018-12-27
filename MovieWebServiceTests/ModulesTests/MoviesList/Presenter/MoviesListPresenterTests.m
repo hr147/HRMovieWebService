@@ -10,10 +10,13 @@
 #import <OCMock/OCMock.h>
 
 #import "MoviesListPresenter.h"
-
+#import "Film.h"
 #import "MoviesListViewInput.h"
 #import "MoviesListInteractorInput.h"
 #import "MoviesListRouterInput.h"
+#import "MoviesListInteractor.h"
+#import "FilmViewModel.h"
+
 
 @interface MoviesListPresenterTests : XCTestCase
 
@@ -32,7 +35,7 @@
     [super setUp];
 
     self.presenter = [[MoviesListPresenter alloc] init];
-
+ 
     self.mockInteractor = OCMProtocolMock(@protocol(MoviesListInteractorInput));
     self.mockRouter = OCMProtocolMock(@protocol(MoviesListRouterInput));
     self.mockView = OCMProtocolMock(@protocol(MoviesListViewInput));
@@ -58,10 +61,40 @@
 
 
     // when
-    //[self.presenter didTriggerViewReadyEvent];
+    [self.presenter viewIsReady];
 
     // then
-   // OCMVerify([self.mockView setupInitialState]);
+    OCMVerify([self.mockView setupInitialState]);
+    OCMVerify([self.mockInteractor fetchFilms]);
 }
 
+- (void)testThatPresenterHandlesFilmDidSelectEvent {
+    
+    // given
+    Film *film = [Film new];
+    OCMStub([self.mockInteractor getFilmAtIndex:0]).andReturn(film);
+    
+    // when
+    [self.presenter filmDidSelectAtIndex:0];
+    
+    // then
+    OCMVerify([self.mockInteractor getFilmAtIndex:0]);
+    OCMVerify([self.mockRouter showFilmDetailWith:film]);
+}
+
+- (void)testThatPresenterHandlesInteractorOutput {
+    
+    // given
+    
+    NSArray<Film*> *films = @[[Film new]];
+    
+    //when
+    
+    [self.presenter filmDidLoad:films];
+    
+    // then
+    // we need to wait for real result
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    OCMVerify([self.mockView showFilmsWith:[OCMArg any]]);
+}
 @end

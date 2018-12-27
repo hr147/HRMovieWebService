@@ -11,5 +11,5 @@
 
 @protocol MoviesListModuleInput
 - (void)viewIsReady;
-- (void)filmDidSelect:(FilmViewModel*)filmViewModel atIndex:(NSInteger)index;
+- (void)filmDidSelectAtIndex:(NSInteger)index;
 @end

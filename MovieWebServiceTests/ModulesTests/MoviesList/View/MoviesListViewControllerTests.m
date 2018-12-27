@@ -10,7 +10,7 @@
 #import <OCMock/OCMock.h>
 #import "MoviesListViewController.h"
 #import "MoviesListModuleInput.h"
-
+//#import ""
 @interface MoviesListViewControllerTests : XCTestCase
 
 @property (nonatomic, strong) MoviesListViewController *controller;
@@ -47,6 +47,17 @@
 
 	// then
 	OCMVerify([self.mockOutput viewIsReady]);
+}
+
+- (void)testThatControllerNotifiesPresenterOnDidSelectFilm {
+    // given
+    
+    // when
+    
+    [self.controller tableView:[UITableView new] didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]];
+
+    // then
+    OCMVerify([self.mockOutput filmDidSelectAtIndex:0]);
 }
 
 @end
