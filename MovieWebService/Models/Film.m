@@ -26,26 +26,11 @@
         NSArray *castsData = [data objectForKey:@"cast"];
         for (NSDictionary *castData in castsData) {
             Actor *actor = [[Actor alloc] initWithData:castData];
-            actor.film = self;
             [castsList addObject:actor];
         }
         self.cast = castsList;
     }
     return self;
 }
-
-
-//- (void)setName:(NSString *)name {
-//    if (name != _name) {
-//        name = _name;
-//    }
-//}
-//
-//- (void)setNominated:(BOOL)nominate;
-//{
-//    if (nominated != nominate){
-//        nominated = nominate;
-//    }
-//}
 
 @end

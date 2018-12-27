@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSDate *dateOfBirth;
 @property (nonatomic, assign) BOOL nominated;
 
-@property (nonatomic, weak) Film *film;
 
 - (id)initWithData:(NSDictionary *)data;
 
