@@ -13,44 +13,48 @@ import MovieWebService
 
 class DetailsViewTests: XCTestCase {
 
-//    var output: MockOutput!
-//    var viewController: DetailsViewController!
+    var eventHanlder: MockDetailsModuleInput!
+    var viewController: DetailsViewController!
 	
     override func setUp() {
         super.setUp()
 
-//        output = MockOutput()
-//
-//        viewController = DetailsViewController()
-//        viewController.output = output
+        eventHanlder = MockDetailsModuleInput()
+
+        viewController = DetailsViewController()
+        viewController.eventHandler = eventHanlder
     }
 
     override func tearDown() {
-//        output = nil
-//        viewController = nil
+        eventHanlder = nil
+        viewController = nil
 		
         super.tearDown()
     }
 
     func testIfViewIsReady() {
-//        //given
-//        let mock = MockOutput()
-//
-//        //when
-//        mock.viewIsReady()
-//
-//        //then
-//        XCTAssertTrue(mock.viewIsReadyDidCall)
+        //given
+        //let mock = MockOutput()
+
+        //when
+        viewController.viewDidLoad()
+
+        //then
+        XCTAssertTrue(eventHanlder.viewIsReadyDidCall)
     }
 
     // MARK: - Mock
 
-//    class MockOutput: DetailsViewOutput {
-//        var viewIsReadyDidCall: Bool = false
-//
-//        func viewIsReady() {
-//            viewIsReadyDidCall = true
-//        }
-//        
-//    }
+    class MockDetailsModuleInput: DetailsModuleInput {
+        func showMoreDetails() {
+            
+        }
+        
+        var viewIsReadyDidCall: Bool = false
+
+        func viewIsReady() {
+            viewIsReadyDidCall = true
+        }
+        
+    }
 }

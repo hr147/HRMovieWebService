@@ -8,7 +8,7 @@
 
 class DetailsRouter: DetailsRouterInput {
 
-	private unowned let viewController: DetailsViewController
+	private unowned let viewController: UIViewController
     
     init(viewController: DetailsViewController) {
         self.viewController = viewController

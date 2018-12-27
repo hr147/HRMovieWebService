@@ -17,9 +17,9 @@ struct ExpandedDetailViewModel {
 
 class DetailsPresenter: DetailsModuleInput, DetailsInteractorOutput {
     
-    private unowned let view: DetailsViewInput
+    unowned let view: DetailsViewInput
     var interactor: DetailsInteractorInput!
-    private let router: DetailsRouterInput
+    let router: DetailsRouterInput
     
     init(view: DetailsViewInput, router: DetailsRouterInput) {
         self.view = view

@@ -12,6 +12,7 @@
 #import "MoviesListInteractor.h"
 #import "FilmService.h"
 #import "MoviesListInteractorOutput.h"
+#import "FilmServiceError.h"
 
 @interface MoviesListInteractorTests : XCTestCase
 
@@ -42,7 +43,7 @@
     [super tearDown];
 }
 
-- (void)testThatInteractorHanldesFetchFilmsRequest {
+- (void)testThatInteractorHanldesFetchFilmsRequestOnSuccess {
     // given
     
     
@@ -50,7 +51,32 @@
     [self.interactor fetchFilms];
     
     // then
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     OCMVerify([self.mockOutput filmDidLoadSuccess:[OCMArg any]]);
 }
 
+//- (void)testThatInteractorHanldesFetchFilmsRequestOnFailure {
+//    // given
+//    
+//    id mock = [OCMockObject niceMockForClass:[FilmService class]];
+//    
+//    void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+//        //void (^passedBlock)(NSURLResponse*, NSData*, NSError*);
+//        void(^passedBlock)(NSError*);
+//        //FailureHandler passedBlock;
+//        [invocation getArgument:&passedBlock atIndex:2];
+//        passedBlock([FilmServiceError validateFilmWith:nil]);
+//    };
+//    
+//    [[[mock stub] andDo:proxyBlock] getFilmWithCompletion:[OCMArg any] withFailure:[OCMArg any]];
+//    
+//    self.interactor = [[MoviesListInteractor alloc] initWithFilmService:mock];
+//    
+//    // when
+//    [self.interactor fetchFilms];
+//    
+//    // then
+//    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+//    OCMVerify([self.mockOutput filmDidLoadFail:[OCMArg any]]);
+//}
 @end

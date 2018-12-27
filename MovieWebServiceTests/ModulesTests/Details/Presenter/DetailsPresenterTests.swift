@@ -14,45 +14,71 @@ import MovieWebService
 
 class DetailsPresenterTests: XCTestCase {
 
-//    var presenter: DetailsPresenter!
-//    var router: MockRouter!
-//    var interactor: MockInteractor!
-//    var view: MockView!
+    var presenter: DetailsPresenter!
+    var interactor: MockInteractor!
+    var view: MockView!
 	
     override func setUp() {
         super.setUp()
-		
-//        router = MockRouter()
-//        interactor = MockInteractor()
-//        view = MockView()
-
-//        presenter = DetailsPresenter()
-//        presenter.router = router
-//        presenter.interactor = interactor
-//        presenter.view = view
+        let film = Film()
+        film.director = Director()
+        film.director.name = "name"
+        
+        interactor = MockInteractor(film: film)
+        view = MockView()
+       
+        presenter = DetailsPresenter(view: view, router:MockDetailsRouterInput())
+        presenter.interactor = interactor
     }
 
     override func tearDown() {
-//        router = nil
-//        interactor = nil
-//        view = nil
-//        presenter = nil
+        interactor = nil
+        view = nil
+        presenter = nil
 
         super.tearDown()
+    }
+    
+    func testHandleViewIsReadyEvents() {
+        //given
+        //let mock = MockOutput()
+        
+        //when
+        presenter.viewIsReady()
+        
+        //then
+        XCTAssertTrue(view.isSetupInitialStateCalled)
+        XCTAssertTrue(view.isShowCollapsedDetail)
     }
 
     // MARK: - Mock
 
-//    class MockInteractor: DetailsInteractorInput {
-//
-//    }
-//
-//    class MockRouter: DetailsRouterInput {
-//
-//    }
-//
-//    class MockView: DetailsViewInput {
-//        
-//    }
+    struct MockDetailsRouterInput: DetailsRouterInput {
+        
+    }
+    
+    struct MockInteractor: DetailsInteractorInput {
+        var film: Film
+        
+
+    }
+
+    class MockView: DetailsViewInput {
+        var isSetupInitialStateCalled = false
+        var isShowCollapsedDetail = false
+        var isShowExpandedDetail = false
+        
+        func setupInitialState() {
+            isSetupInitialStateCalled = true
+        }
+        
+        func showCollapsedDetail(with detailViewModel: CollapsedDetailViewModel) {
+            isShowCollapsedDetail = true
+        }
+        
+        func showExpandedDetail(with detailViewModel: ExpandedDetailViewModel) {
+            isShowExpandedDetail = true
+        }
+    }
 
 }
