@@ -9,64 +9,19 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    
+    //event handler property
     var eventHandler: DetailsModuleInput!
     
-    private let directorName: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.text = "Director Name"
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    //UI properties
+    let directorName: UILabel = .create("Director Name", .titleFont)
+    let directorNameValue: UILabel = .create()
+    let actorName: UILabel = .create("Actor Name", .titleFont)
+    let actorNameValue: UILabel = .create()
+    let actorScreenName: UILabel = .create("Actor Screen Name", .titleFont)
+    let actorScreenNameValue: UILabel = .create()
+    let tapToShowMore: TappableLabel = .create("Tap here to show more", .titleFont)
     
-    private let directorNameValue: UILabel = {
-        let label = UILabel()
-        label.text = "director value"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let tapToShowMore: TappableLabel = {
-        let label = TappableLabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.text = "Tap here to show more"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let actorName: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.text = "Actor Name"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let actorNameValue: UILabel = {
-        let label = UILabel()
-        label.text = "actor value"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let actorScreenName: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.text = "Actor Screen Name"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let actorScreenNameValue: UILabel = {
-        let label = UILabel()
-        label.text = "screen value"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let stackView: UIStackView = {
+    let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -116,10 +71,6 @@ class DetailsViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16.0).isActive = true
     }
-    
-    deinit {
-        print("\(self)")
-    }
 }
 
 extension DetailsViewController: DetailsViewInput {
@@ -155,4 +106,30 @@ extension DetailsViewController: TappableLabelDelegate {
     }
 }
 
+extension UILabel {
+    /// Create UILabel for autolayouts
+    ///
+    /// - Parameters:
+    ///   - text: set default text to the label
+    ///   - font: set default font to the label
+    /// - Returns: it will return new label instance based on given information
+    class func create(_ text: String = "", _ font: UIFont = .valueFont) -> Self {
+        let label = self.init()
+        label.font = font
+        label.text = text
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+}
+
+extension UIFont {
+    class var titleFont: UIFont {
+        return UIFont.systemFont(ofSize: 18, weight: .medium)
+    }
+    
+    class var valueFont: UIFont {
+        return UIFont.systemFont(ofSize: 16.0)
+    }
+}
 
